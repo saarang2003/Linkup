@@ -12,8 +12,12 @@ import authRoutes from './routes/auth.js'
 import {register} from './controllers/auth.js';
 import userRoutes from './routes/user.js'
 import createPost from './routes/posts.js'
+import postRoutes from "./routes/posts.js";
 import { verifyToken } from './middleware/auth.js';
 import postsRoutes from './routes/posts.js'
+import User from './models/User.js'
+import Post from './models/post.js';
+import {users, posts} from './data/index.js'
 
 // Load environment variables from .env file
 dotenv.config();
@@ -58,5 +62,9 @@ mongoose
     .connect(process.env.MONGO_URL)
     .then(() => {
         app.listen(PORT, () => console.log(`Server Port: ${PORT} and connected succesfuly`));
+        
+        // User.insertMany(users);
+        // Post.insertMany(posts);
+    
     })
     .catch((error) => console.log(`${error} did not connect`));
